@@ -1,0 +1,125 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 136,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P6ABF3CF4AC48EEA4"
+          },
+          "editorMode": "code",
+          "expr": "{ pod=~\"shopsolaris-magento-.*\" } |~ \"(POST)(.*)(HTTP)(.*)( 400| 401| 404| 500| 501| 502| 503)\" !~ \"(POST /app/etc/config.php HTTP/1.1\\\" 404)\"",
+          "key": "Q-aa157e45-4890-40ae-a876-a9816c002993-0",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "INTERESTING POST REQUESTS",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "gridPos": {
+        "h": 26,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 1,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P6ABF3CF4AC48EEA4"
+          },
+          "editorMode": "code",
+          "expr": "{ pod=~\"shopsolaris-magento-.*\" } |~ \"(/rest/(.*)(payment-information)(.*)|(/rest/(.*)(isEmailAvailable)(.*))|(/graphql)|(/hyva/token))\" !~ \"PostmanR\"",
+          "key": "Q-5ce8df2a-2161-487a-a19e-f0ae0e5379ec-0",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "SOLARIS - React Checkout Analyze",
+      "transformations": [],
+      "type": "logs"
+    }
+  ],
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "SOLARIS - REACT CHECKOUT",
+  "uid": "KVBTROA4k",
+  "version": 4,
+  "weekStart": ""
+}
