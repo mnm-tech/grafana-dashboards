@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -13,13 +16,17 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 520,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -27,8 +34,12 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": null,
-            "filterable": false
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -57,8 +68,11 @@
                 "value": 300
               },
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "color",
@@ -77,9 +91,17 @@
         "y": 0
       },
       "id": 34,
-      "interval": null,
       "maxDataPoints": 1,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -88,18 +110,20 @@
           }
         ]
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
-          "expr": "topk(100, sum by (userAgent) (count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"} | json |  __error__=\"\" [$__interval])))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "topk(100, sum by (userAgent) (count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |  __error__=\"\" [$__interval])))",
           "instant": true,
           "legendFormat": "{{http_user_agent}}",
           "range": false,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster Activated Top User Agents",
       "transformations": [
         {
@@ -122,7 +146,10 @@
       "type": "table"
     },
     {
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -167,18 +194,21 @@
         "text": {
           "titleSize": 1
         },
-        "textMode": "value"
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|objectRef_subresource=\"exec\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|objectRef_subresource=\"exec\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "ExecAttemption",
       "type": "stat"
     },
@@ -187,10 +217,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Loki-sysadmin",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -218,7 +247,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -228,15 +257,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|verb=\"watch\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|verb=\"watch\"[5m]))",
           "legendFormat": "watch-events",
           "refId": "A"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "WatchObjectCalls",
       "tooltip": {
         "shared": true,
@@ -245,37 +276,31 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -320,23 +345,29 @@
         "text": {
           "titleSize": 1
         },
-        "textMode": "value"
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|~ \"curl|requests\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|~ \"curl|requests\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "NonKubectlAccess",
       "type": "stat"
     },
     {
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -381,23 +412,29 @@
         "text": {
           "titleSize": 1
         },
-        "textMode": "value"
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "ForbiddenAccessAttemption",
       "type": "stat"
     },
     {
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -438,23 +475,29 @@
         "text": {
           "titleSize": 1
         },
-        "textMode": "value"
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"/api/v1/secrets\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"/api/v1/secrets\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "SecretsAccessCount",
       "type": "stat"
     },
     {
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -495,18 +538,21 @@
         "text": {
           "titleSize": 1
         },
-        "textMode": "value"
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"/api/v1/configmaps\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"/api/v1/configmaps\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "ConfigmapAccessCount",
       "type": "stat"
     },
@@ -515,10 +561,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Loki-sysadmin",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -546,7 +591,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -556,15 +601,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/pods\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/pods\"[5m]))",
           "legendFormat": "pods-unauthenticated",
           "refId": "A"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "UnAuthenticatedPodAttemptions",
       "tooltip": {
         "shared": true,
@@ -573,33 +620,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -607,10 +645,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Loki-sysadmin",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -638,7 +675,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -648,15 +685,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/deployments\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/deployments\"[5m]))",
           "legendFormat": "deployments-unauthenticated",
           "refId": "A"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Deployments",
       "tooltip": {
         "shared": true,
@@ -665,33 +704,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -699,10 +729,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Loki-sysadmin",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -730,7 +759,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -740,15 +769,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/secrets\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/secrets\"[5m]))",
           "legendFormat": "secrets-unauthenticated",
           "refId": "A"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "SecretsUnAuthenticated",
       "tooltip": {
         "shared": true,
@@ -757,33 +788,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -791,10 +813,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Loki-sysadmin",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -822,7 +843,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -832,15 +853,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/configmaps\"[5m]))",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/configmaps\"[5m]))",
           "legendFormat": "configmap-unauthenticated",
           "refId": "A"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "ConfigmapUnAuthenticated",
       "tooltip": {
         "shared": true,
@@ -849,42 +872,32 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 10,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -894,6 +907,9 @@
       "id": 30,
       "options": {
         "dedupStrategy": "numbers",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -901,25 +917,26 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} | json |annotations_authorization_k8s_io_decision=\"forbid\"| line_format \"User Agent: {{.userAgent}} UserName: {{.user}}\"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |annotations_authorization_k8s_io_decision=\"forbid\"| line_format \"User Agent: {{.userAgent}} UserName: {{.user}}\"",
           "instant": false,
           "legendFormat": "",
           "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "ForbiddenUserActivity",
       "type": "logs"
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -929,6 +946,9 @@
       "id": 28,
       "options": {
         "dedupStrategy": "numbers",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -936,25 +956,26 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} | json |objectRef_subresource=\"exec\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |objectRef_subresource=\"exec\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "ExecAttemptions",
       "type": "logs"
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -964,6 +985,9 @@
       "id": 29,
       "options": {
         "dedupStrategy": "numbers",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -971,25 +995,26 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"securityContext\\\":{\\\"privileged\\\":true}\"|line_format \"Privileged Pods : {{.responseObject_metadata_name}} \"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"securityContext\\\":{\\\"privileged\\\":true}\"|line_format \"Privileged Pods : {{.responseObject_metadata_name}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Privileged ",
       "type": "logs"
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -999,6 +1024,9 @@
       "id": 27,
       "options": {
         "dedupStrategy": "numbers",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -1006,25 +1034,26 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} | json |objectRef_subresource=\"exec\"| line_format \"User who executed something on pods {{.user_username}} \"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |objectRef_subresource=\"exec\"| line_format \"User who executed something on pods {{.user_username}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "UsersExecAttemption",
       "type": "logs"
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -1034,6 +1063,9 @@
       "id": 26,
       "options": {
         "dedupStrategy": "numbers",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -1041,25 +1073,26 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} | json |verb=\"delete\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |verb=\"delete\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "DeleteActions",
       "type": "logs"
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -1069,6 +1102,9 @@
       "id": 25,
       "options": {
         "dedupStrategy": "numbers",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -1076,21 +1112,26 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} | json |responseStatus_code=403| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |responseStatus_code=403| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "NonAuthenticatedAccess",
       "type": "logs"
     },
     {
       "collapsed": false,
-      "datasource": "Loki-sysadmin",
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1099,16 +1140,24 @@
       },
       "id": 7,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Row title",
       "type": "row"
     },
     {
-      "datasource": "Loki-sysadmin",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
+      "description": "",
       "gridPos": {
         "h": 8,
         "w": 24,
@@ -1118,6 +1167,9 @@
       "id": 22,
       "options": {
         "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
         "showLabels": false,
         "showTime": false,
         "sortOrder": "Descending",
@@ -1125,23 +1177,54 @@
       },
       "targets": [
         {
-          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} | json | line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json | line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "APIServerActivities",
       "type": "logs"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 27,
-  "style": "dark",
+  "schemaVersion": 38,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "test-cluster",
+          "value": "test-cluster"
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Cluster",
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "label": "k8s_cluster",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "{k8s_cluster=~\".+\"}",
+          "type": 1
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 4,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -1149,7 +1232,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Kubernetes Audit Dashboard - sysadmin-Cluster",
-  "uid": "eeVe5geeju",
-  "version": 12
+  "title": "Kubernetes Audit Dashboard",
+  "uid": "a38e2619-a2cd-4b1b-955e-c0f5f9954dd1",
+  "version": 2,
+  "weekStart": ""
 }
