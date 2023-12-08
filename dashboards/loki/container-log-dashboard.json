@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16966,
   "graphTooltip": 0,
-  "id": 488,
+  "id": 56,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -810,8 +810,8 @@
       {
         "current": {
           "selected": false,
-          "text": "deneme-cluster",
-          "value": "deneme-cluster"
+          "text": "tier2-cluster",
+          "value": "tier2-cluster"
         },
         "datasource": {
           "type": "loki",
@@ -833,7 +833,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 4,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -842,8 +842,8 @@
       {
         "current": {
           "selected": false,
-          "text": "scylla",
-          "value": "scylla"
+          "text": "kube-system",
+          "value": "kube-system"
         },
         "datasource": {
           "type": "loki",
@@ -865,7 +865,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -897,7 +897,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -929,7 +929,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 2,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
