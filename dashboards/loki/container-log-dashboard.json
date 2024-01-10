@@ -20,14 +20,13 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16966,
   "graphTooltip": 0,
-  "id": 56,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "Total  Count of log lines in the specified time range",
       "fieldConfig": {
@@ -97,10 +96,10 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "editorMode": "code",
-          "expr": "sum(count_over_time(({k8s_cluster=\"$cluster\",namespace=\"$namespace\", stream=~\"$stream\", pod=~\"$pod\"})[$__interval]))",
+          "expr": "sum(count_over_time(({namespace=\"$namespace\", stream=~\"$stream\", pod=~\"$pod\"})[$__interval]))",
           "hide": false,
           "queryType": "range",
           "refId": "A"
@@ -112,7 +111,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "Total Count: of $searchable_pattern in the specified time range",
       "fieldConfig": {
@@ -177,7 +176,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(count_over_time(({namespace=\"$namespace\", stream=~\"$stream\", pod=~\"$pod\"} |~ \"(?i)$searchable_pattern\")[$__interval]))",
           "hide": false,
@@ -190,7 +189,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "Live logs is a like 'tail -f' in a real time",
       "gridPos": {
@@ -214,10 +213,10 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "editorMode": "code",
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"$namespace\", pod=~\"$pod\", stream=~\"$stream\"} |~ \"(?i)$searchable_pattern\" ",
+          "expr": "{namespace=\"$namespace\", pod=~\"$pod\", stream=~\"$stream\"} |~ \"(?i)$searchable_pattern\" ",
           "hide": false,
           "queryType": "range",
           "refId": "A"
@@ -238,7 +237,7 @@
       },
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -316,7 +315,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(count_over_time(({namespace=\"$namespace\", pod=~\"$pod\"})[$__interval])) by (stream)",
           "hide": false,
@@ -336,7 +335,7 @@
       },
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "decimals": 0,
       "fieldConfig": {
@@ -403,7 +402,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(count_over_time(({namespace=\"$namespace\", pod=~\"$pod\", stream=~\"$stream\"} |~ \"(?i)$searchable_pattern\")[$__interval])) by (pod)",
           "refId": "A"
@@ -416,7 +415,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -476,7 +475,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(count_over_time(({namespace=\"$namespace\", stream=~\"$stream\", pod=~\"$pod\"} |~ \"(?i)$searchable_pattern\")[$__interval])) * 100 / sum(count_over_time(({namespace=\"$namespace\", stream=~\"$stream\", pod=~\"$pod\"})[$__interval]))",
           "hide": false,
@@ -493,7 +492,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "decimals": 0,
       "fieldConfig": {
@@ -549,7 +548,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(count_over_time(({namespace=\"$namespace\", pod=~\"$pod\", stream=~\"$stream\"} |~ \"(?i)$searchable_pattern\")[$__interval])) by (pod)",
           "refId": "A"
@@ -596,7 +595,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -646,7 +645,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(rate(({namespace=\"$namespace\", stream=~\"$stream\", pod=~\"$pod\"} |~ \"(?i)$searchable_pattern\")[30s])) by (pod)",
           "hide": false,
@@ -692,7 +691,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -758,7 +757,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "expr": "sum(count_over_time(({namespace=\"$namespace\", pod=~\"$pod\"})[$__interval])) by (stream)",
           "hide": false,
@@ -810,44 +809,30 @@
       {
         "current": {
           "selected": false,
-          "text": "tier2-cluster",
-          "value": "tier2-cluster"
+          "text": "Loki-124",
+          "value": "P6ABF3CF4AC48EEA4"
         },
-        "datasource": {
-          "type": "loki",
-          "uid": "P8E80F9AEF21F6940"
-        },
-        "definition": "",
         "hide": 0,
         "includeAll": false,
-        "label": "Cluster",
+        "label": "loki",
         "multi": false,
-        "name": "cluster",
+        "name": "loki",
         "options": [],
-        "query": {
-          "label": "k8s_cluster",
-          "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{k8s_cluster=~\".+\"}",
-          "type": 1
-        },
-        "refresh": 2,
+        "query": "loki",
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 4,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "datasource"
       },
       {
         "current": {
           "selected": false,
-          "text": "kube-system",
-          "value": "kube-system"
+          "text": "ahtapot-html",
+          "value": "ahtapot-html"
         },
         "datasource": {
           "type": "loki",
-          "uid": "P8E80F9AEF21F6940"
+          "uid": "${loki}"
         },
         "definition": "",
         "hide": 0,
@@ -859,7 +844,7 @@
         "query": {
           "label": "namespace",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{k8s_cluster=\"$cluster\", namespace=~\".+\"}",
+          "stream": "{namespace=~\".+\"}",
           "type": 1
         },
         "refresh": 2,
@@ -879,7 +864,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": "P8E80F9AEF21F6940"
+          "uid": "${loki}"
         },
         "definition": "",
         "hide": 0,
@@ -891,7 +876,7 @@
         "query": {
           "label": "pod",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{k8s_cluster=\"$cluster\",namespace=\"$namespace\"}",
+          "stream": "{namespace=\"$namespace\"}",
           "type": 1
         },
         "refresh": 2,
@@ -911,7 +896,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": "P8E80F9AEF21F6940"
+          "uid": "${loki}"
         },
         "definition": "",
         "hide": 0,
@@ -923,7 +908,7 @@
         "query": {
           "label": "stream",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{k8s_cluster=\"$cluster\",namespace=\"$namespace\"}",
+          "stream": "{namespace=\"$namespace\"}",
           "type": 1
         },
         "refresh": 2,
