@@ -18,14 +18,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 520,
+  "id": 141,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "fieldConfig": {
@@ -105,7 +105,7 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": false,
+            "desc": true,
             "displayName": "Requests"
           }
         ]
@@ -115,9 +115,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "topk(100, sum by (userAgent) (count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |  __error__=\"\" [$__interval])))",
+          "expr": "topk(100, sum by (userAgent) (count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json |  __error__=\"\" [$__interval])))",
           "instant": true,
           "legendFormat": "{{http_user_agent}}",
           "range": false,
@@ -148,7 +148,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -202,9 +202,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|objectRef_subresource=\"exec\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|objectRef_subresource=\"exec\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
@@ -219,7 +219,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -259,9 +259,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|verb=\"watch\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|verb=\"watch\"[5m]))",
           "legendFormat": "watch-events",
           "refId": "A"
         }
@@ -299,7 +299,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -353,9 +353,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|~ \"curl|requests\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|~ \"curl|requests\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
@@ -366,7 +366,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -420,9 +420,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|annotations_authorization_k8s_io_decision=\"forbid\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
@@ -433,7 +433,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -483,9 +483,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"/api/v1/secrets\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|=\"/api/v1/secrets\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
@@ -496,7 +496,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fieldConfig": {
         "defaults": {
@@ -546,9 +546,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"/api/v1/configmaps\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|=\"/api/v1/configmaps\"[5m]))",
           "legendFormat": "curl/requests",
           "refId": "A"
         }
@@ -563,7 +563,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -603,9 +603,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/pods\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/pods\"[5m]))",
           "legendFormat": "pods-unauthenticated",
           "refId": "A"
         }
@@ -647,7 +647,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -687,9 +687,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/deployments\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/deployments\"[5m]))",
           "legendFormat": "deployments-unauthenticated",
           "refId": "A"
         }
@@ -731,7 +731,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -771,9 +771,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/secrets\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/secrets\"[5m]))",
           "legendFormat": "secrets-unauthenticated",
           "refId": "A"
         }
@@ -815,7 +815,7 @@
       "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -855,9 +855,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "sum(count_over_time({k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/configmaps\"[5m]))",
+          "expr": "sum(count_over_time({namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|annotations_authorization_k8s_io_decision=\"forbid\"|=\"/api/v1/\"|=\"/configmaps\"[5m]))",
           "legendFormat": "configmap-unauthenticated",
           "refId": "A"
         }
@@ -895,7 +895,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -919,9 +919,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |annotations_authorization_k8s_io_decision=\"forbid\"| line_format \"User Agent: {{.userAgent}} UserName: {{.user}}\"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json |annotations_authorization_k8s_io_decision=\"forbid\"| line_format \"User Agent: {{.userAgent}} UserName: {{.user}}\"",
           "instant": false,
           "legendFormat": "",
           "range": true,
@@ -934,7 +934,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -958,9 +958,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |objectRef_subresource=\"exec\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json |objectRef_subresource=\"exec\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
@@ -973,7 +973,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -997,9 +997,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"}|json|=\"securityContext\\\":{\\\"privileged\\\":true}\"|line_format \"Privileged Pods : {{.responseObject_metadata_name}} \"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"}|~ \"(?i)$searchable_pattern\"|json|=\"securityContext\\\":{\\\"privileged\\\":true}\"|line_format \"Privileged Pods : {{.responseObject_metadata_name}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
@@ -1012,7 +1012,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -1036,9 +1036,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |objectRef_subresource=\"exec\"| line_format \"User who executed something on pods {{.user_username}} \"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json |objectRef_subresource=\"exec\"| line_format \"User who executed something on pods {{.user_username}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
@@ -1051,7 +1051,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -1075,9 +1075,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |verb=\"delete\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json |verb=\"delete\"| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
@@ -1090,7 +1090,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -1114,9 +1114,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json |responseStatus_code=403| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json |responseStatus_code=403| line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "instant": false,
           "legendFormat": "",
           "range": true,
@@ -1130,7 +1130,7 @@
       "collapsed": false,
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "gridPos": {
         "h": 1,
@@ -1144,7 +1144,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
           "refId": "A"
         }
@@ -1155,7 +1155,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "uid": "${loki}"
       },
       "description": "",
       "gridPos": {
@@ -1179,9 +1179,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "uid": "${loki}"
           },
-          "expr": "{k8s_cluster=\"$cluster\", namespace=\"kube-system\", container=\"kube-apiserver\"} | json | line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
+          "expr": "{namespace=\"kube-system\", container=\"kube-apiserver\"} |~ \"(?i)$searchable_pattern\" | json | line_format \"request for {{.requestURI}} with HTTP status: {{.responseStatus_code}} \"",
           "legendFormat": "",
           "refId": "A"
         }
@@ -1198,31 +1198,40 @@
       {
         "current": {
           "selected": false,
-          "text": "test-cluster",
-          "value": "test-cluster"
+          "text": "Loki-tier2",
+          "value": "P65673FA203501C06"
         },
-        "datasource": {
-          "type": "loki",
-          "uid": "P8E80F9AEF21F6940"
-        },
-        "definition": "",
         "hide": 0,
         "includeAll": false,
-        "label": "Cluster",
+        "label": "loki",
         "multi": false,
-        "name": "cluster",
+        "name": "loki",
         "options": [],
-        "query": {
-          "label": "k8s_cluster",
-          "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "{k8s_cluster=~\".+\"}",
-          "type": 1
-        },
+        "query": "loki",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 4,
-        "type": "query"
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        },
+        "hide": 0,
+        "label": "Search (case insensitive)",
+        "name": "searchable_pattern",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
       }
     ]
   },
@@ -1233,7 +1242,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Kubernetes Audit Dashboard",
-  "uid": "a38e2619-a2cd-4b1b-955e-c0f5f9954dd1",
-  "version": 2,
+  "uid": "e55eea5c-f038-4aad-a6ef-c83bca1b715c",
+  "version": 3,
   "weekStart": ""
 }
