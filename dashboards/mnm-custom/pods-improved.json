@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16698,
   "graphTooltip": 0,
-  "id": 346,
+  "id": 96,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -38,7 +38,7 @@
       "description": "",
       "gridPos": {
         "h": 1,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 0
       },
@@ -53,7 +53,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.1",
       "repeat": "pod",
       "repeatDirection": "h",
       "targets": [
@@ -133,13 +133,15 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 2
       },
       "id": 47,
       "maxPerRow": 12,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -150,9 +152,10 @@
         },
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
+        "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.1",
       "repeat": "pod",
       "repeatDirection": "h",
       "targets": [
@@ -182,6 +185,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -195,6 +199,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -268,7 +273,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 7
       },
@@ -351,6 +356,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -364,6 +370,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -400,7 +407,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 13
       },
@@ -448,6 +455,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -461,6 +469,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -497,7 +506,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 19
       },
@@ -610,13 +619,15 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 26
       },
       "id": 76,
       "maxPerRow": 12,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -627,9 +638,10 @@
         },
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
+        "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "10.4.1",
       "repeat": "pod",
       "repeatDirection": "h",
       "targets": [
@@ -659,6 +671,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -672,6 +685,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -745,7 +759,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 31
       },
@@ -825,6 +839,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -836,6 +853,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -857,7 +875,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -871,7 +890,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 24,
+        "w": 2.1818181818181817,
         "x": 0,
         "y": 37
       },
@@ -981,30 +1000,62 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": "125-cluster",
+          "value": "125-cluster"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(kube_node_labels, node)",
+        "definition": "label_values(up{metrics_path=\"/metrics/cadvisor\"},cluster)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Cluster",
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(up{metrics_path=\"/metrics/cadvisor\"},cluster)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "k8s-125-prod-worker-02"
+          ],
+          "value": [
+            "k8s-125-prod-worker-02"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(kube_node_info{cluster=\"$cluster\"},node)",
         "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(kube_node_labels, node)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(kube_node_info{cluster=\"$cluster\"},node)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -1014,9 +1065,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "akeneo-martas",
-          "value": "akeneo-martas"
+          "selected": true,
+          "text": "rossmann",
+          "value": "rossmann"
         },
         "datasource": {
           "type": "prometheus",
@@ -1040,9 +1091,33 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "akeneo-martas-b599f9cc7-tpmlz",
-          "value": "akeneo-martas-b599f9cc7-tpmlz"
+          "selected": true,
+          "text": [
+            "rossmann-magento-web-c9f9cc448-btqnx",
+            "rossmann-magento-web-c9f9cc448-xdsj7",
+            "rossmann-magento-web-c9f9cc448-kppgc",
+            "rossmann-magento-web-c9f9cc448-d5bgj",
+            "rossmann-magento-web-c9f9cc448-z5pbj",
+            "rossmann-magento-web-c9f9cc448-7bfhr",
+            "rossmann-magento-web-c9f9cc448-tjf4s",
+            "rossmann-magento-queue-codegenerator-processor-5f9b77f57c-7c2fn",
+            "rossmann-magento-web-c9f9cc448-mfhdc",
+            "rossmann-magento-web-c9f9cc448-s6mdq",
+            "rossmann-varnish-9d75565cd-7dndd"
+          ],
+          "value": [
+            "rossmann-magento-web-c9f9cc448-btqnx",
+            "rossmann-magento-web-c9f9cc448-xdsj7",
+            "rossmann-magento-web-c9f9cc448-kppgc",
+            "rossmann-magento-web-c9f9cc448-d5bgj",
+            "rossmann-magento-web-c9f9cc448-z5pbj",
+            "rossmann-magento-web-c9f9cc448-7bfhr",
+            "rossmann-magento-web-c9f9cc448-tjf4s",
+            "rossmann-magento-queue-codegenerator-processor-5f9b77f57c-7c2fn",
+            "rossmann-magento-web-c9f9cc448-mfhdc",
+            "rossmann-magento-web-c9f9cc448-s6mdq",
+            "rossmann-varnish-9d75565cd-7dndd"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -1099,7 +1174,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Pods Improved",
-  "uid": "cx8ql377z",
-  "version": 2,
+  "uid": "bdkpfy1humn0gd",
+  "version": 1,
   "weekStart": ""
 }
