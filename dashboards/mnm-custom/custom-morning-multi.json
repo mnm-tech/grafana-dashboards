@@ -401,7 +401,7 @@
             "cellOptions": {
               "type": "color-text"
             },
-            "filterable": false,
+            "filterable": true,
             "inspect": false
           },
           "mappings": [],
@@ -428,7 +428,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 194
+                "value": 200
               }
             ]
           },
@@ -440,7 +440,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 123
+                "value": 200
               }
             ]
           },
@@ -452,26 +452,14 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 97
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pod"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 638
+                "value": 200
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 12,
         "x": 12,
         "y": 0
@@ -481,7 +469,7 @@
         "cellHeight": "sm",
         "footer": {
           "countRows": false,
-          "enablePagination": true,
+          "enablePagination": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -864,11 +852,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 6
       },
       "id": 22,
       "panels": [],
-      "title": "Kubernetes Cluster Cpu - Mem",
+      "title": "CLUSTER NODE - CPU & MEMORY ",
       "type": "row"
     },
     {
@@ -883,14 +871,14 @@
             "seriesBy": "last"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
-            "axisColorMode": "text",
+            "axisColorMode": "series",
             "axisLabel": "CPU %",
-            "axisPlacement": "auto",
+            "axisPlacement": "left",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 14,
+            "fillOpacity": 50,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -903,7 +891,7 @@
               "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 1,
+            "pointSize": 2,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -944,20 +932,19 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 7
       },
       "id": 6,
       "options": {
         "legend": {
           "calcs": [
-            "min",
-            "max",
-            "mean"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
-          "sortBy": "Mean",
+          "sortBy": "Max",
           "sortDesc": true
         },
         "tooltip": {
@@ -1014,7 +1001,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 5,
+            "fillOpacity": 30,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -1023,7 +1010,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "smooth",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1060,15 +1047,14 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 7
       },
       "id": 8,
       "options": {
         "legend": {
           "calcs": [
-            "min",
-            "max",
-            "mean"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
@@ -1107,11 +1093,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 15
       },
       "id": 20,
       "panels": [],
-      "title": "Kubernetes Namespace Cpu - Mem",
+      "title": "CLUSTER NAMESPACE - CPU & MEMORY ",
       "type": "row"
     },
     {
@@ -1132,7 +1118,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 25,
+            "fillOpacity": 50,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -1144,7 +1130,7 @@
             "lineStyle": {
               "fill": "solid"
             },
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1182,15 +1168,14 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 16
       },
       "id": 12,
       "options": {
         "legend": {
           "calcs": [
-            "min",
-            "max",
-            "mean"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
@@ -1241,7 +1226,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 25,
+            "fillOpacity": 30,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -1250,7 +1235,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "smooth",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1287,15 +1272,14 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 16
       },
       "id": 10,
       "options": {
         "legend": {
           "calcs": [
-            "min",
-            "max",
-            "mean"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
@@ -1334,11 +1318,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 24
       },
       "id": 24,
       "panels": [],
-      "title": "Kubernetes Top Cpu - Mem - Disk",
+      "title": "CLUSTER TOP - CPU & MEMORY & DISK",
       "type": "row"
     },
     {
@@ -1359,21 +1343,24 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 20,
+            "fillOpacity": 50,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
+            "insertNulls": 3600000,
             "lineInterpolation": "linear",
-            "lineWidth": 2,
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
+            "showPoints": "auto",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1405,18 +1392,20 @@
         "h": 9,
         "w": 10,
         "x": 0,
-        "y": 26
+        "y": 25
       },
       "id": 14,
       "options": {
         "legend": {
           "calcs": [
-            "max",
-            "min"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "maxHeight": 600,
@@ -1432,18 +1421,18 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(10, sum(rate(container_cpu_usage_seconds_total{cluster=\"$cluster\", container!=\"POD\"}[2m])) by ( pod))",
+          "expr": "topk(15,sum(rate(container_cpu_usage_seconds_total{cluster=\"$cluster\",pod!=\"\",container!=\"POD\"}[2m])) by (pod))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{ pod }}",
+          "legendFormat": "__auto",
           "metric": "container_cpu_usage_seconds_total",
           "range": true,
           "refId": "A",
           "step": 4
         }
       ],
-      "title": "TOP 10 Pods - CPU",
+      "title": "TOP 15 Pods - CPU",
       "type": "timeseries"
     },
     {
@@ -1464,7 +1453,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 30,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -1473,7 +1462,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1510,17 +1499,20 @@
         "h": 9,
         "w": 9,
         "x": 10,
-        "y": 26
+        "y": 25
       },
       "id": 16,
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull"
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "maxHeight": 600,
@@ -1536,7 +1528,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(10,sum(container_memory_usage_bytes{cluster=\"$cluster\", image!=\"\"}) by (pod))",
+          "expr": "topk(15,sum(container_memory_usage_bytes{cluster=\"$cluster\", image!=\"\"}) by (pod))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{pod}}",
@@ -1545,7 +1537,7 @@
           "step": 10
         }
       ],
-      "title": "Top 10 Pods - Memory Intense",
+      "title": "Top 15 Pods - Memory Intense",
       "type": "timeseries"
     },
     {
@@ -1559,11 +1551,14 @@
           "custom": {
             "align": "auto",
             "cellOptions": {
-              "type": "auto"
+              "type": "color-text"
             },
-            "inspect": false
+            "filterable": true,
+            "inspect": true
           },
+          "fieldMinMax": false,
           "mappings": [],
+          "min": -2,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1582,7 +1577,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Current"
+              "options": "Last *"
             },
             "properties": [
               {
@@ -1592,11 +1587,13 @@
               {
                 "id": "custom.cellOptions",
                 "value": {
+                  "applyToRow": true,
                   "type": "color-background"
                 }
               },
               {
-                "id": "custom.align"
+                "id": "custom.align",
+                "value": "right"
               },
               {
                 "id": "thresholds",
@@ -1608,6 +1605,10 @@
                       "value": null
                     },
                     {
+                      "color": "#EAB839",
+                      "value": 70
+                    },
+                    {
                       "color": "rgba(237, 129, 40, 0.89)",
                       "value": 80
                     },
@@ -1617,6 +1618,10 @@
                     }
                   ]
                 }
+              },
+              {
+                "id": "custom.width",
+                "value": 80
               }
             ]
           }
@@ -1626,7 +1631,7 @@
         "h": 9,
         "w": 5,
         "x": 19,
-        "y": 26
+        "y": 25
       },
       "hideTimeOverride": true,
       "id": 18,
@@ -1634,13 +1639,20 @@
         "cellHeight": "sm",
         "footer": {
           "countRows": false,
+          "enablePagination": false,
           "fields": "",
           "reducer": [
             "sum"
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Last *"
+          }
+        ]
       },
       "pluginVersion": "11.0.0",
       "targets": [
@@ -1720,9 +1732,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "1s",
-          "value": "1s"
+          "selected": true,
+          "text": "1m",
+          "value": "1m"
         },
         "hide": 0,
         "includeAll": false,
@@ -1730,7 +1742,7 @@
         "name": "resolution",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "1s",
             "value": "1s"
           },
@@ -1745,7 +1757,7 @@
             "value": "30s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
@@ -1768,7 +1780,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-1h",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
