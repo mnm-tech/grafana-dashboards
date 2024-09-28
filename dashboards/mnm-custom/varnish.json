@@ -126,7 +126,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_client_req{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_client_req{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "interval": "15s",
           "intervalFactor": 1,
@@ -209,7 +209,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "irate(varnish_main_backend_req{instance=~\"^$varnish_instance.*\"}[5m])",
+          "expr": "irate(varnish_main_backend_req{service=~\"^$varnish_instance.*\"}[5m])",
           "format": "time_series",
           "interval": "15s",
           "intervalFactor": 1,
@@ -291,7 +291,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(varnish_main_vmods{instance=~\"^($varnish_instance).*\"})",
+          "expr": "sum(varnish_main_vmods{service=~\"^($varnish_instance).*\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -372,7 +372,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "min(varnish_main_uptime{instance=~\"^($varnish_instance).*\"})",
+          "expr": "min(varnish_main_uptime{service=~\"^($varnish_instance).*\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -458,7 +458,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "avg(( rate(varnish_main_cache_hit{instance=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{instance=~\"^($varnish_instance).*\"}[5m]) ))",
+          "expr": "avg(( rate(varnish_main_cache_hit{service=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{service=~\"^($varnish_instance).*\"}[5m]) ))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -572,7 +572,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_client_req{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_client_req{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -586,7 +586,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_backend_req{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_backend_req{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -599,7 +599,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(varnish_main_fetch_total{instance=~\"^($varnish_instance).*\"})",
+          "expr": "sum(varnish_main_fetch_total{service=~\"^($varnish_instance).*\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "fetch total",
@@ -611,7 +611,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_fetch_total{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_fetch_total{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "fetched objects",
@@ -723,7 +723,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "avg(rate(varnish_main_cache_hit{instance=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "avg(rate(varnish_main_cache_hit{service=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -737,7 +737,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "avg(1 - (rate(varnish_main_cache_hit{instance=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{instance=~\"^($varnish_instance).*\"}[5m])))",
+          "expr": "avg(1 - (rate(varnish_main_cache_hit{service=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{service=~\"^($varnish_instance).*\"}[5m])))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -751,7 +751,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "avg(1 - (rate(varnish_main_cache_hitpass{instance=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{instance=~\"^($varnish_instance).*\"}[5m])))",
+          "expr": "avg(1 - (rate(varnish_main_cache_hitpass{service=~\"^($varnish_instance).*\"}[5m]) / rate(varnish_main_client_req{service=~\"^($varnish_instance).*\"}[5m])))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -899,7 +899,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_s_resp_hdrbytes{instance=~\"^($varnish_instance).*\"}[5m]) + irate(varnish_main_s_resp_bodybytes{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_s_resp_hdrbytes{service=~\"^($varnish_instance).*\"}[5m]) + irate(varnish_main_s_resp_bodybytes{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -913,7 +913,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_backend_beresp_hdrbytes{instance=~\"^($varnish_instance).*\"}[5m]) + irate(varnish_backend_beresp_bodybytes{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_backend_beresp_hdrbytes{service=~\"^($varnish_instance).*\"}[5m]) + irate(varnish_backend_beresp_bodybytes{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -928,7 +928,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_backend_beresp_hdrbytes{instance=~\"^($varnish_instance).*\"}[5m]) + irate(varnish_backend_beresp_bodybytes{instance=~\"^($varnish_instance).*\"}[5m])) by (backend)",
+          "expr": "sum(irate(varnish_backend_beresp_hdrbytes{service=~\"^($varnish_instance).*\"}[5m]) + irate(varnish_backend_beresp_bodybytes{service=~\"^($varnish_instance).*\"}[5m])) by (backend)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "backend {{ backend }}",
@@ -1047,7 +1047,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_n_expired{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_n_expired{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1061,7 +1061,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_n_lru_moved{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_n_lru_moved{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1074,7 +1074,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(irate(varnish_main_n_lru_nuked{instance=~\"^($varnish_instance).*\"}[5m]))",
+          "expr": "sum(irate(varnish_main_n_lru_nuked{service=~\"^($varnish_instance).*\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1087,7 +1087,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(varnish_sma_g_bytes{type=\"s0\", instance=~\"^($varnish_instance).*\"})",
+          "expr": "sum(varnish_sma_g_bytes{type=\"s0\", service=~\"^($varnish_instance).*\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "mem used",
@@ -1212,7 +1212,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_conn{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_conn{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. success",
           "refId": "A",
@@ -1223,7 +1223,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_recycle{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_recycle{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. recycles",
           "refId": "B",
@@ -1234,7 +1234,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_reuse{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_reuse{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. reuses",
           "refId": "C",
@@ -1245,7 +1245,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_fail{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_fail{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. failures",
           "refId": "D",
@@ -1256,7 +1256,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_unhealthy{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_unhealthy{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. not attempted",
           "refId": "E",
@@ -1267,7 +1267,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_busy{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_busy{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. too many",
           "refId": "F",
@@ -1278,7 +1278,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_req{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_req{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend requests made",
           "refId": "G",
@@ -1289,7 +1289,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_main_backend_retry{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_main_backend_retry{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Backend conn. retry",
           "refId": "H",
@@ -1300,7 +1300,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(varnish_backend_conn{instance=~\"^($varnish_instance).*\"}[1m])",
+          "expr": "rate(varnish_backend_conn{service=~\"^($varnish_instance).*\"}[1m])",
           "intervalFactor": 2,
           "legendFormat": "Concurrent connections to backend",
           "refId": "I",
@@ -1398,7 +1398,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum by(type) (rate(varnish_main_sessions{instance=~\"^($varnish_instance).*\"}[1m]))",
+          "expr": "sum by(type) (rate(varnish_main_sessions{service=~\"^($varnish_instance).*\"}[1m]))",
           "intervalFactor": 2,
           "legendFormat": "session - {{type}}",
           "refId": "A",
@@ -1492,7 +1492,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_threads_created{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_threads_created{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Threads created",
           "metric": "varnish_main_threads_created",
@@ -1504,7 +1504,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_threads_destroyed{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_threads_destroyed{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Threads destroyed",
           "refId": "B",
@@ -1515,7 +1515,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_threads_failed{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_threads_failed{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Thread creation failed",
           "refId": "C",
@@ -1526,7 +1526,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_threads_limited{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_threads_limited{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Max Threads hit",
           "refId": "D",
@@ -1537,7 +1537,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_threads{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_threads{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Total number of threads",
           "refId": "E",
@@ -1548,7 +1548,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_thread_queue_len{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_thread_queue_len{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Length of session queue waiting for threads",
           "refId": "F",
@@ -1559,7 +1559,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_pools{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_pools{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Number of thread pools   ",
           "refId": "G",
@@ -1674,7 +1674,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Count of Bans",
           "refId": "A",
@@ -1685,7 +1685,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_completed{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_completed{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Number of bans marked 'completed'",
           "refId": "B",
@@ -1696,7 +1696,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_deleted{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_deleted{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Bans deleted",
           "refId": "C",
@@ -1707,7 +1707,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_dups{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_dups{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Bans superseded by other bans",
           "refId": "D",
@@ -1718,7 +1718,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_obj{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_obj{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Number of bans using obj.*",
           "refId": "I",
@@ -1729,7 +1729,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_obj_killed{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_obj_killed{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Objects killed by bans (lookup)",
           "refId": "J",
@@ -1811,7 +1811,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_persisted_bytes{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_persisted_bytes{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Bytes used by the persisted ban lists",
           "refId": "K",
@@ -1822,7 +1822,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_persisted_fragmentation{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_persisted_fragmentation{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Extra bytes in persisted ban lists due to fragmentation",
           "refId": "L",
@@ -1904,7 +1904,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_lurker_contention{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_lurker_contention{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Lurker gave way for lookup",
           "refId": "E",
@@ -1915,7 +1915,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_lurker_obj_killed{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_lurker_obj_killed{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Objects killed by bans (lurker)",
           "refId": "F",
@@ -1926,7 +1926,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_lurker_tested{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_lurker_tested{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Bans tested against objects (lurker)",
           "refId": "G",
@@ -1937,7 +1937,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "varnish_main_bans_lurker_tests_tested{instance=~\"^($varnish_instance).*\"}",
+          "expr": "varnish_main_bans_lurker_tests_tested{service=~\"^($varnish_instance).*\"}",
           "intervalFactor": 2,
           "legendFormat": "Ban tests tested against objects (lurker)",
           "refId": "H",
@@ -1995,7 +1995,7 @@
         "name": "varnish_instance",
         "options": [],
         "query": {
-          "query": "label_values(varnish_up, instance)",
+          "query": "label_values(varnish_up, service)",
           "refId": "Prometheus-varnish_instance-Variable-Query"
         },
         "refresh": 1,
