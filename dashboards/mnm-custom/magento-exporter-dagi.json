@@ -167,7 +167,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<img src=\"https://img-dagi.mncdn.com/media/wysiwyg/dagi-logo.jpg\" height=\"200\">",
+        "content": "<img src=\"https://img-dagi.mncdn.com/media/wysiwyg/dagi-logo.jpg\" style=\"padding-top:20px\">",
         "mode": "markdown"
       },
       "pluginVersion": "11.3.0",
@@ -468,6 +468,6 @@
   "timezone": "browser",
   "title": "dagi-magento&apollon-exporter",
   "uid": "fe53x4k9h2ozkb",
-  "version": 58,
+  "version": 61,
   "weekStart": ""
 }
